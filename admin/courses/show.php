@@ -1,5 +1,101 @@
 <?php require('../includes/header.php'); ?>
 
+<style>
+    /* General Page Styling */
+    .app-content {
+        background-color: #f8f9fa;
+        padding-top: 30px;
+    }
+
+    .app-page-title {
+        color: #333;
+        font-size: 28px;
+        font-weight: 600;
+    }
+
+    .btn-primary {
+        background-color: #6f9cde;
+        border-color: #6f9cde;
+        transition: 0.3s;
+    }
+
+    .btn-primary:hover {
+        background-color: #6879d0;
+        border-color: #6879d0;
+    }
+
+    .settings-section {
+        margin-top: 30px;
+    }
+
+    .app-card-settings {
+        border-radius: 10px;
+        background-color: #ffffff;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+    }
+
+    .app-card-body {
+        padding: 20px;
+    }
+
+    .form-label {
+        font-size: 14px;
+        font-weight: 600;
+        color: #333;
+    }
+
+    .form-control {
+        height: 40px;
+        padding: 10px;
+        font-size: 14px;
+        border: 1px solid #ced4da;
+        border-radius: 5px;
+        transition: 0.3s;
+    }
+
+    .form-control:focus {
+        border-color: #6f9cde;
+        box-shadow: 0 0 5px rgba(111, 156, 222, 0.5);
+        outline: none;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        font-size: 14px;
+        border-radius: 5px;
+    }
+
+    .alert {
+        font-size: 14px;
+        margin-bottom: 20px;
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    .alert-success {
+        background-color: #d4edda;
+        color: #155724;
+    }
+
+    .alert-danger {
+        background-color: #f8d7da;
+        color: #721c24;
+    }
+    .btn.app-btn-primary {
+        background-color: #6f9cde;
+        color: #ffffff;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        font-size: 14px;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn.app-btn-primary:hover {
+        background-color: #5a85c2;
+    }
+</style>
 <body class="app">
     <?php require('../includes/navbar.php'); ?>
     <?php require('../includes/sidebar.php'); ?>

@@ -2,7 +2,7 @@
 
      if(isset($_GET['id'])){
         $id=$_GET['id'];
-        $delete ="DELETE FROM teachers WHERE id=$id";
+        $delete ="DELETE FROM teachers WHERE faculty_id=$id";
         $result=mysqli_query($conn,$delete);
 
     }

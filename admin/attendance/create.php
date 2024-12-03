@@ -1,5 +1,5 @@
 <?php
-include 'db_connect.php'; // Include the database connection code
+require('../config/config.php'); // Include the database connection code
 
 // Fetch students and classes for the form
 $students_query = "SELECT * FROM students";
@@ -14,7 +14,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     foreach ($_POST['attendance'] as $reg_id => $status) {
         $sql = "INSERT INTO attendance (std_id, course_id, date, status) VALUES ('$std_id', '$course_id', '$date', '$status')";
-        $conn->query($sql);
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('iisi', $std_id, $course_id, $date, $status);
     }
 
     echo "Attendance marked successfully!";
@@ -56,8 +57,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <td>" . htmlspecialchars($row['name']) . "</td>
                             <td>" . htmlspecialchars($row['reg_id']) . "</td>
                             <td>
-                                <input type='radio' name='attendance[" . $row['id'] . "]' value='present' required> Present
-                                <input type='radio' name='attendance[" . $row['id'] . "]' value='absent' required> Absent
+                                <input type='radio' name='attendance[" . $row['id'] . "]' value='1' required> Present
+                                <input type='radio' name='attendance[" . $row['id'] . "]' value='0' required> Absent
                             </td>
                         </tr>";
                 }

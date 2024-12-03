@@ -1,5 +1,100 @@
 <?php require('../includes/header.php'); ?>
+<style>
+    /* General Page Styling */
+    .app-content {
+        background-color: #f8f9fa;
+        padding-top: 30px;
+    }
 
+    .app-page-title {
+        color: #333;
+        font-size: 28px;
+        font-weight: 600;
+    }
+
+    .btn-primary {
+        background-color: #6f9cde;
+        border-color: #6f9cde;
+        transition: 0.3s;
+    }
+
+    .btn-primary:hover {
+        background-color: #6879d0;
+        border-color: #6879d0;
+    }
+
+    .settings-section {
+        margin-top: 30px;
+    }
+
+    .app-card-settings {
+        border-radius: 10px;
+        background-color: #ffffff;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+    }
+
+    .app-card-body {
+        padding: 20px;
+    }
+
+    .form-label {
+        font-size: 14px;
+        font-weight: 600;
+        color: #333;
+    }
+
+    .form-control {
+        height: 40px;
+        padding: 10px;
+        font-size: 14px;
+        border: 1px solid #ced4da;
+        border-radius: 5px;
+        transition: 0.3s;
+    }
+
+    .form-control:focus {
+        border-color: #6f9cde;
+        box-shadow: 0 0 5px rgba(111, 156, 222, 0.5);
+        outline: none;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        font-size: 14px;
+        border-radius: 5px;
+    }
+
+    .alert {
+        font-size: 14px;
+        margin-bottom: 20px;
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    .alert-success {
+        background-color: #d4edda;
+        color: #155724;
+    }
+
+    .alert-danger {
+        background-color: #f8d7da;
+        color: #721c24;
+    }
+    .btn.app-btn-primary {
+        background-color: #6f9cde;
+        color: #ffffff;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        font-size: 14px;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn.app-btn-primary:hover {
+        background-color: #5a85c2;
+    }
+</style>
 <body class="app">
     <?php require('../includes/navbar.php'); ?>
     <?php require('../includes/sidebar.php'); ?>
@@ -8,7 +103,7 @@
         <div class="app-content pt-3 p-md-3 p-lg-4">
             <div class="container-xl">
                 <h1 class="app-page-title">Add Students</h1>
-                <a class="btn btn-primary btn-sm text-white" href="index.php" role="button"> Manage Students </a>
+                <a class="btn app-btn-primary" href="index.php" role="button"> Manage Students </a>
                 <hr class="mb-4">
                 <div class="row g-4 settings-section">
                     <div class="col-12 col-md-6">
@@ -42,9 +137,12 @@
                                         $sql = "UPDATE students SET reg_id='$reg_id', name='$name', phone='$phone', address='$address', email='$email', faculty='$faculty',batch='$batch',parent_name='$parent_name',parent_phone='$parent_phone' WHERE id=$id";
                                         $result = mysqli_query($conn, $sql);
                                         if ($result) {
-                                            echo '<div class="alert alert-success">Students Updated successfully</div>';
-                                            // header("Location: index.php");
-                                            echo "<meta http-equiv=\"refresh\" content=\"2;URL=index.php\">";
+                                            echo "<script>
+                                                    window.onload = function() {
+                                                        alert('Student updated successfully.');
+                                                        window.location.href = 'index.php'; // Redirects to index.php after alert
+                                                    };
+                                                </script>";
                                         } else {
                                             echo '<div class="alert alert-danger">An error occurred</div>';
                                         }

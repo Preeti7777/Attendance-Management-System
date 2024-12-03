@@ -4,78 +4,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Login</title>
+    <title>Student Login</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        body, html {
             margin: 0;
             padding: 0;
-            background-color: #B1A2CA;
-            overflow-x: hidden;
+            height: 100%;
+            width: 100%;
+            font-family: Arial, sans-serif;
         }
 
-        .card {
-            background-color: #F5F5F5;
-            border-radius: 15px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            opacity: 0;
-            transform: translateY(-150px);
-            animation: slideIn 1s ease-out forwards;
+        .main-container {
+            display: flex;
+            height: 100%;
+            width: 100%;
         }
-        @keyframes slideIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+
+        /* Left Section */
+        .left-container {
+            flex: 1;
+            background: linear-gradient(to right, #8F7AB5, #B8A0D1, #D6C8E1);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            border-top-right-radius: 150px;
+            border-bottom-right-radius: 150px;
+        }
+        .left-container h1 {
+            font-size: 48px;
+            font-weight: 600;
+        }
+
+        /* Right Section */
+        .right-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background-color: white;
+            flex-direction: column;
         }
         .atten-text {
-            font-size: 38px;
-            font-weight: 500;
+            font-size: 48px;
+            font-weight: 600;
             color: rgba(0, 0, 0, 0.773);
+            margin-bottom: 40px;
+            text-align: center;
         }
-
         .sign-in-text {
-            font-size: 15px;
+            font-size: 20px;
             margin-bottom: 30px;
-            color: blue;
+            text-align: center;
         }
-
         .input-group-text {
             border-radius: 20px 0 0 20px;
         }
-
         .form-control {
             border-radius: 0 20px 20px 0;
             background-color: #F0F0F0;
         }
-
-        .forgot-password-text {
-            color: #707070;
-        }
-
         .btn-custom {
-            background-color: #B1A2CA;
+            background: #AD9DC8;
             color: white;
             font-size: 16px;
             padding: 10px 20px;
             border-radius: 5px;
-            width: 400px;
-            margin-right: 15px;
-            margin-left: 5px;
+            width: 100%;
+            transition: 0.3s;
         }
-
         .btn-custom:hover {
-            background-color: #0056b3;
+            background-color: #8F7AB5;
+            color: white;
         }
 
         .footer-text {
             font-size: 17px;
             margin-top: 60px;
+            text-align: center;
         }
-
         .create-link {
             text-decoration: underline;
             color: blue;
@@ -99,63 +111,64 @@
                 $_SESSION["id"] = $row["id"];
                 $_SESSION["email"] = $row["email"];
                 
-                // Redirect to dashboard.php
-                header("Location:studentdb/index.php");
+                $id = urlencode($row["id"]);
+                header("Location: studentdb/profile.php?id=$id");
                 exit();
             } else {
-                echo "Invalid password.";
+                echo "<script>
+                window.onload = function() {
+                    alert('Invalid Registration Id');
+                };
+            </script>";
             }
         } else {
-            echo "Student not found.";
+            echo "<script>
+                window.onload = function() {
+                    alert('Student not found.');
+                };
+            </script>";
         }
+        
     }
     $conn->close();
-    ?>
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-6 col-lg-5">
-                <div class="card">
-                    <div class="text-center mb-4">
-                        <h1 class="atten-text">Attendance Management System </h1>
-                        <h1 class="atten-text">Student</h1>
+?>
+
+<div class="main-container">
+    <!-- Left Section -->
+    <div class="left-container">
+        <h1>Welcome, Student!</h1>
+    </div>
+
+    <!-- Right Section -->
+    <div class="right-container">
+        <h2 class="atten-text">Student Login</h2>
+        <p class="sign-in-text">Log in to your account</p>
+        <form method="POST" enctype="multipart/form-data" style="width: 100%; max-width: 400px;">
+            <div class="input-container form-group">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-user"></i></span>
                     </div>
-                    <p class="text-center sign-in-text">Log in to your account</p>
-                    <form class="settings-form" method="POST" enctype="multipart/form-data">
-                    <div class="input-container form-group">
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fa fa-user"></i></span>
-                            </div>
-                            <input type="text" name="email" class="form-control" placeholder="Email" required>
-                        </div>
-                    </div>
-                    <div class="input-container form-group">
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fa fa-lock"></i></span>
-                            </div>
-                            <input type="password" name="reg_id" class="form-control" placeholder="Registration ID" required>
-                        </div>
-                    </div>
-                   
-                    <button class="btn btn-custom btn-block my-3" name="save"">
-                        Sign In <i class="fa fa-arrow-right ml-2"></i>
-                    </button>
-                    </form>
-                    </p>
+                    <input type="text" name="email" class="form-control" placeholder="Email" required>
                 </div>
             </div>
-        </div>
+            <div class="input-container form-group">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                    </div>
+                    <input type="password" name="reg_id" class="form-control" placeholder="Registration ID" required>
+                </div>
+            </div>
+            <button class="btn btn-custom btn-block my-3" name="save">
+                Log In <i class="fa fa-arrow-right ml-2"></i>
+            </button>
+        </form>
     </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
-        function handleSignIn() {
-            // Handle the sign-in logic here, for example, navigating to a different page
-            window.location.href = '/Pages/Dashboards/StuDashboard.html';
-        }
-    </script>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
-

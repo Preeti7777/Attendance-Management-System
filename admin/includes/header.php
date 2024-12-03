@@ -1,10 +1,9 @@
-
 <?php require('../config/config.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-	<title>Portal - Bootstrap 5 Admin Dashboard Template For Developers</title>
+	<title>Admin Dashboard</title>
 
 	<!-- Meta -->
 	<meta charset="utf-8">
@@ -21,7 +20,6 @@
 	<!-- App CSS -->
 	<link id="theme-style" rel="stylesheet" href="../assets/css/portal.css">
 
-    <script src="https://kit.fontawesome.com/d5cb4471ec.js" crossorigin="anonymous"></script>
+	<script src="https://kit.fontawesome.com/d5cb4471ec.js" crossorigin="anonymous"></script>
 
 </head>
-
